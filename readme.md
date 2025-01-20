@@ -48,9 +48,14 @@ emirates/
 │   ├── tests/              # Containerized Pytest cases
 ├── Dockerfile              # Docker image for the API server
 ├── entrypoint.sh           # Entrypoint for the API container
+├── playwright/             # Playwright test cases
+│   ├── api.spec.ts
+│   ├── package.json
+│   └── ...
 ├── supertest/              # Supertest.js test cases
 │   ├── api.test.js
 │   ├── package.json
+│   └── ...
 └── ...
 ```
 
@@ -92,7 +97,7 @@ pytest  # Run from `app` folder
 pytest --html=report.html # Generate HTML report (run inside `app`)
 ```
 
-#### [Optional] Pytest with Allure Reports
+### [Optional] Pytest with Allure Reports
 1. Install Allure on Mac
 ```bash
 brew install allure

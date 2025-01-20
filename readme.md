@@ -78,6 +78,7 @@ This video covers:
 
 ### Start the API Server
 ```bash
+cd app
 python app.py
 ```
 
@@ -87,7 +88,8 @@ Access the server at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
 #### Using Pytest
 ```bash
-pytest
+pytest  # Run from `app` folder
+pytest --html=report.html # Generate HTML report (run inside `app`)
 ```
 
 ### Using other frameworks

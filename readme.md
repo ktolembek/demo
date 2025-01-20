@@ -46,6 +46,7 @@ emirates/ #inventory-management-api
 └── ...
 ```
 
+Video explanation: https://drive.google.com/file/d/1Lj3mWW2PawsPhDbefxLtwBzktLKeu3gq/view?usp=sharing
 ---
 ---
 

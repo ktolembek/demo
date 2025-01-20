@@ -130,10 +130,6 @@ pytest -vvl
 ```bash
 exit
 ```
-*To stop the container*
-```bash
-docker-compose down
-```
 
 ---
 

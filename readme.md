@@ -92,7 +92,31 @@ pytest  # Run from `app` folder
 pytest --html=report.html # Generate HTML report (run inside `app`)
 ```
 
-### Using other frameworks
+#### [Optional] Pytest with Allure Reports
+1. Install Allure on Mac
+```bash
+brew install allure
+pip install allure-pytest
+```
+
+Install Allure on PC
+```bash
+scoop install allure
+pip install allure-pytest
+```
+
+2. Add `--alluredir` option to Pytest
+```bash
+pytest --alluredir=allure-results
+```
+
+3. Generate the report using the Allure CLI:
+```bash
+allure serve allure-results
+```
+
+
+### [Optional] Using other frameworks
 
 **Supertest.js**
 ```bash

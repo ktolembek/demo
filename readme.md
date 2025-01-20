@@ -16,7 +16,11 @@ To run the tests, ensure the following are installed:
 
 1. **Python 3.9+**
 2. **Docker** and **Docker Compose** (optional, for containerized testing)
-3. Required Python packages (install via `requirements.txt`):
+3. Clone this repository:
+```bash
+git clone https://github.com/ktolembek/emirates.git
+```
+4. Required Python packages (install via `requirements.txt`):
 
 ```bash
 pip install -r requirements.txt
@@ -90,6 +94,8 @@ Video explanation: https://drive.google.com/file/d/1Lj3mWW2PawsPhDbefxLtwBzktLKe
 ```
 
 
+---
+
 ## Running the API server and tests inside a container
 
 ### Prerequisites
@@ -145,7 +151,41 @@ Video explanation: https://drive.google.com/file/d/1Lj3mWW2PawsPhDbefxLtwBzktLKe
   ```bash
   $ exit
   ```
-  
+
+---
+
+## Running tests locally with Supertest.js
+### Prerequisites 
+
+- **Node.js** (v14 or later)
+- **npm** or **yarn**
+- **Supertest.js** framework for API testing
+
+### Usage   
+1. Start the API server:
+``` bash
+   $ python app.py 
+```
+2. Access the API server and run manual tests:
+   - Open Postman/Insomnia or a web browser and navigate to `http://127.0.0.1:5000` to access the application.
+
+3. Navigate to the `supertest` directory:
+```bash
+cd supertest
+```
+
+4. Install dependencies:
+```bash
+npm install
+```
+
+5. Run automated tests
+```bash
+npm test
+```
+
+---
+---
 
 # API Test Cases Documentation
 
@@ -272,3 +312,4 @@ This document provides an overview of the test cases implemented to test the CRU
 This is a temporary storage mechanism that resets every time the application restarts. It doesn't use SQLite or any other persistent storage mechanism.
 - For simplicity I haven't used any authentication or authorization mechanisms in this implementation.
 - BDD style plugins like Cucumber or Behave weren't used to avoid additional dependencies and complexity.
+- A simple Supertest.js test suite is also included for alternative API testing.

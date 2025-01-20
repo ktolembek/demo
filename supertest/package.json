@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "uuid": "^11.0.5"
+  },
+  "name": "inventory-management-api",
+  "version": "1.0.0",
+  "main": "api.test.js",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Ken",
+  "license": "ISC",
+  "description": "API testing with Supertest"
+}

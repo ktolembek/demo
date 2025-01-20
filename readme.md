@@ -115,20 +115,16 @@ docker-compose run test sh
 ```
 
 **That will drop you into a shell where you can run the tests with standard CLI:**
+
 *Run the entire test suite*
 ``` bash
 pytest 
 ```
 
-*Run tests while printing all variables and verbose output*
+*Run tests with verbose output*
 ``` bash
 pytest -vvl
 ```
-
-*Run tests while printing all print statements*
-``` bash
-pytest -s
-``` 
 
 *To exit the shell*
 ```bash
@@ -148,6 +144,7 @@ docker-compose down
 |--------|------------------|------------------------|
 | POST   | `/items`         | Create a new item      |
 | GET    | `/items/:id`     | Retrieve an item       |
+| GET    | `/items`         |  List all items        |
 | PUT    | `/items/:id`     | Update an existing item|
 | DELETE | `/items/:id`     | Delete an item         |
 

@@ -50,7 +50,18 @@ emirates/ #inventory-management-api
 └── ...
 ```
 
-Video explanation: https://drive.google.com/file/d/1Lj3mWW2PawsPhDbefxLtwBzktLKeu3gq/view?usp=sharing
+## Video Explanation
+
+For a detailed walkthrough of the Inventory Management API, including setup, usage, and test execution, please refer to the following video:
+
+[Video Explanation](https://drive.google.com/file/d/1Lj3mWW2PawsPhDbefxLtwBzktLKeu3gq/view?usp=sharing)
+
+This video covers:
+- Overview of the API features
+- Step-by-step guide to running the API server and tests
+
+---
+
 ---
 ---
 

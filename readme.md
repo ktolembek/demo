@@ -268,3 +268,7 @@ This document provides an overview of the test cases implemented to test the CRU
 ## Notes
 - The tests are parameterized to cover multiple scenarios and data combinations efficiently.
 - The API base URL (`BASE_URL`) is configurable to support local and containerized environments.
+- The API server implementation uses an in-memory data store (data_store dictionary) to manage items. 
+This is a temporary storage mechanism that resets every time the application restarts. It doesn't use SQLite or any other persistent storage mechanism.
+- For simplicity I haven't used any authentication or authorization mechanisms in this implementation.
+- BDD style plugins like Cucumber or Behave weren't used to avoid additional dependencies and complexity.

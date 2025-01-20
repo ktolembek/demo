@@ -1,12 +1,16 @@
 # Inventory Management API
 
-This repository contains the Inventory Management API server and a comprehensive suite of tests for verifying the functionality, correctness, and error handling of a RESTful API. The API server is written using Python and Flask. The tests are written using Python and Pytest.
+This repository contains the **Inventory Management API** built using Python and Flask, along with an extensive test suite to validate its functionality and robustness. Tests are implemented in both Python (using Pytest) and JavaScript (using Supertest.js) for flexible and versatile validation.
+
+---
 
 ## Features
-- **CRUD Operation Tests**: Ensures the API correctly handles Create, Read, Update, and Delete operations.
-- **Positive and Negative Test Cases**: Validates both successful and error scenarios.
-- **Parameterized Tests**: Covers multiple data combinations efficiently.
-- **Automated Setup and Teardown**: Prepares the test environment and cleans up resources after tests.
+
+- **CRUD Operations**: Full support for Create, Read, Update, and Delete functionalities.
+- **Positive and Negative Test Cases**: Validates both success and error-handling scenarios.
+- **Parameterized Tests**: Ensures extensive coverage with varied data inputs.
+- **Setup and Teardown**: Automated preparation and cleanup for consistent test environments.
+- **Docker Integration**: Easy-to-use containerized environments for testing.
 
 ---
 
@@ -25,7 +29,7 @@ git clone https://github.com/ktolembek/emirates.git
 ```bash
 pip install -r requirements.txt
 ```
-
+5. **Node.js v14+** (optional, for Supertest JS testing)
 ---
 
 ## Folder Structure
@@ -61,28 +65,9 @@ This video covers:
 - Step-by-step guide to running the API server and tests
 
 ---
-
----
 ---
 
-## Test Cases Overview
-
-### Positive Test Cases
-1. **Create Item**: Verify that valid items can be created successfully.
-2. **Get Item**: Retrieve existing items using their unique IDs.
-3. **Update Item**: Update properties of existing items.
-4. **Delete Item**: Remove items by their IDs.
-
-### Negative Test Cases
-1. **Get Nonexistent Item**: Ensure a `404` error is returned for invalid IDs.
-2. **Update Nonexistent Item**: Validate proper error handling when updating nonexistent items.
-3. **Delete Nonexistent Item**: Confirm that deleting nonexistent items returns a `404` error.
-4. **Create Item with Invalid Data**: Test that invalid input data returns appropriate `400` errors.
-5. **Update Item with Invalid Data**: Verify error handling when updating items with invalid input.
-
----
-
-## Running the API server and tests locally
+## Running Locally
 ### Prerequisites
 1. Install Python and Pip:
    - Download and install Python from [python.org](https://www.python.org/).
@@ -91,109 +76,106 @@ This video covers:
 2. Install required packages:
    - Run `pip install -r requirements.txt` to install all necessary packages.
 
-### Usage   
-3. Start the API server:
-``` bash
-   $ python app.py 
-```
-4. Access the API server and run manual tests:
-   - Open Postman/Insomnia or a web browser and navigate to `http://127.0.0.1:5000` to access the application.
-
-5. Run automated tests
-``` bash
-  $ pytest 
+### Start the API Server
+```bash
+python app.py
 ```
 
+Access the server at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
----
+### Run Tests Locally
 
-## Running the API server and tests inside a container
-
-### Prerequisites
-**Install Docker**
-  - These tests have been packaged to run with all dependencies
-    installed within a Docker container. Due to the use of f-strings,
-    this must be run with python 3.6+. The Docker image is based on python 3.10
-
-### Usage
-**To run API server open a shell**
-1. Build the Docker image
-  ```bash
-  $ docker build -t inventory-api .
-  ```
-2. Run the Docker container with API app
-  ```bash
-  $ docker run -p 5000:5000 inventory-api
-  ```
-
-**To run tests open another shell**
-3. Switch to `test-container` folder
-  ```bash
-  $ cd test-container
-  ```
-4. Build the Docker image for test runner
-  ```bash
-  $ docker-compose build
-  ```
-5. Start the container with an interactive shell:
-  ```bash
-  $ docker-compose run test sh
-  ```
-**That will drop you into a shell where you can run the tests with standard CLI:**
-*Run the entire test suite*
-    
-  ``` bash
-  $ pytest 
-  ```
-
-*Run tests while printing all variables and verbose output*
-
-  ``` bash
-  $ pytest -vvl
-  ```
-
-*Run tests while printing all print statements*
-
-  ``` bash
-  $ pytest -s
-  ``` 
-
-*To exit the shell*
-  ```bash
-  $ exit
-  ```
-
----
-
-## Running tests locally with Supertest.js
-### Prerequisites 
-
-- **Node.js** (v14 or later)
-- **npm** or **yarn**
-- **Supertest.js** framework for API testing
-
-### Usage   
-1. Start the API server:
-``` bash
-   $ python app.py 
+#### Using Pytest
+```bash
+pytest
 ```
-2. Access the API server and run manual tests:
-   - Open Postman/Insomnia or a web browser and navigate to `http://127.0.0.1:5000` to access the application.
 
-3. Navigate to the `supertest` directory:
+#### Using Supertest.js
 ```bash
 cd supertest
-```
-
-4. Install dependencies:
-```bash
 npm install
-```
-
-5. Run automated tests
-```bash
 npm test
 ```
+
+---
+
+## Running in Docker
+
+### Build and Run API Server
+```bash
+docker build -t inventory-api .
+docker run -p 5000:5000 inventory-api
+```
+
+### Run Tests in Docker
+```bash
+cd test-container
+docker-compose build
+docker-compose run test sh
+```
+
+**That will drop you into a shell where you can run the tests with standard CLI:**
+*Run the entire test suite*
+``` bash
+pytest 
+```
+
+*Run tests while printing all variables and verbose output*
+``` bash
+pytest -vvl
+```
+
+*Run tests while printing all print statements*
+``` bash
+pytest -s
+``` 
+
+*To exit the shell*
+```bash
+exit
+```
+*To stop the container*
+```bash
+docker-compose down
+```
+
+---
+
+
+## API Endpoints
+
+| Method | Endpoint         | Description            |
+|--------|------------------|------------------------|
+| POST   | `/items`         | Create a new item      |
+| GET    | `/items/:id`     | Retrieve an item       |
+| PUT    | `/items/:id`     | Update an existing item|
+| DELETE | `/items/:id`     | Delete an item         |
+
+---
+
+## Test Cases
+
+### Positive Tests
+1. **Create Item**: Successfully create items.
+2. **Get Item**: Retrieve items by ID.
+3. **Update Item**: Modify existing items.
+4. **Delete Item**: Remove items.
+
+### Negative Tests
+1. **Invalid Retrieval**: Access non-existent items.
+2. **Invalid Updates**: Modify non-existent or invalid items.
+3. **Invalid Deletions**: Attempt to delete non-existent items.
+4. **Invalid Input**: Ensure input validation for all endpoints.
+
+---
+
+## Notes
+
+- The API uses an in-memory datastore that resets on restart.
+- Authentication and authorization are not implemented for simplicity.
+- Swagger documentation is available in the `docs/` folder.
+- Both BDD and TDD styles are supported, but not implemented to avoid additional dependencies and complexity.
+
 
 ---
 ---
@@ -305,22 +287,3 @@ This document provides an overview of the test cases implemented to test the CRU
 - **Expected Outcome**: The API returns a `400` error with an appropriate validation message.
 
 ---
-
-## Setup and Teardown
-- **Setup**:
-  - Prints a setup message before tests run.
-  - Ensures the environment is prepared for testing.
-- **Teardown**:
-  - Prints a teardown message after tests complete.
-  - Deletes all created items using their saved IDs.
-
----
-
-## Notes
-- The tests are parameterized to cover multiple scenarios and data combinations efficiently.
-- The API base URL (`BASE_URL`) is configurable to support local and containerized environments.
-- The API server implementation uses an in-memory data store (data_store dictionary) to manage items. 
-This is a temporary storage mechanism that resets every time the application restarts. It doesn't use SQLite or any other persistent storage mechanism.
-- For simplicity I haven't used any authentication or authorization mechanisms in this implementation.
-- BDD style plugins like Cucumber or Behave weren't used to avoid additional dependencies and complexity.
-- A simple Supertest.js test suite is also included for alternative API testing.

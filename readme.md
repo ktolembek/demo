@@ -35,22 +35,22 @@ pip install -r requirements.txt
 ## Folder Structure
 
 ```plaintext
-emirates/ #inventory-management-api
+emirates/
 ├── app/
-│   ├── app.py  # The main application file
-│   ├── requirements.txt  # the required Python packages
-│   ├── tests/  # Main test suite for local testing
-│   │   └── test_app.py  # API tests
-│   ├── docs/  # OAS schema for Swagger
+│   ├── app.py              # API application
+│   ├── requirements.txt    # Python dependencies
+│   ├── tests/              # Pytest test cases
+│   ├── docs/               # Swagger/OpenAPI documentation
 │   └── ...
 ├── test-container/
-│   ├── Dockerfile  # Dockerfile for building the test runner image
-│   ├── docker-compose.yaml
-│   ├── tests/  # Main test suite for testing from container
-│   │   └── test_app.py  # API tests
-│   └── ...
-├── Dockerfile  # Dockerfile for building the API image
-├── entrypoint.sh
+│   ├── Dockerfile          # Docker image for test runner
+│   ├── docker-compose.yaml # Docker setup for tests
+│   ├── tests/              # Containerized Pytest cases
+├── Dockerfile              # Docker image for the API server
+├── entrypoint.sh           # Entrypoint for the API container
+├── supertest/              # Supertest.js test cases
+│   ├── api.test.js
+│   ├── package.json
 └── ...
 ```
 

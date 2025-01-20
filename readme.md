@@ -1,6 +1,6 @@
 # Inventory Management API
 
-This repository contains the **Inventory Management API** built using Python and Flask, along with an extensive test suite to validate its functionality and robustness. Tests are implemented in both Python (using Pytest) and JavaScript (using Supertest.js) for flexible and versatile validation.
+This repository contains the **Inventory Management API** built using Python and Flask, along with an extensive test suite to validate its functionality and robustness. Tests are implemented in both Python (using Pytest) and JavaScript (using Supertest.js or Playwright) for flexible and versatile validation.
 
 ---
 

@@ -1,6 +1,72 @@
 # Inventory Management API
 
-## Running the API server and tests in your system
+This repository contains the Inventory Management API server and a comprehensive suite of tests for verifying the functionality, correctness, and error handling of a RESTful API. The API server is written using Python and Flask. The tests are written using Python and Pytest.
+
+## Features
+- **CRUD Operation Tests**: Ensures the API correctly handles Create, Read, Update, and Delete operations.
+- **Positive and Negative Test Cases**: Validates both successful and error scenarios.
+- **Parameterized Tests**: Covers multiple data combinations efficiently.
+- **Automated Setup and Teardown**: Prepares the test environment and cleans up resources after tests.
+
+---
+
+## Prerequisites
+
+To run the tests, ensure the following are installed:
+
+1. **Python 3.9+**
+2. **Docker** and **Docker Compose** (optional, for containerized testing)
+3. Required Python packages (install via `requirements.txt`):
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Folder Structure
+
+```plaintext
+emirates/ #inventory-management-api
+├── app/
+│   ├── app.py  # The main application file
+│   ├── requirements.txt  # the required Python packages
+│   ├── tests/  # Main test suite for local testing
+│   │   └── test_app.py  # API tests
+│   ├── docs/  # OAS schema for Swagger
+│   └── ...
+├── test-container/
+│   ├── Dockerfile  # Dockerfile for building the test runner image
+│   ├── docker-compose.yaml
+│   ├── tests/  # Main test suite for testing from container
+│   │   └── test_app.py  # API tests
+│   └── ...
+├── Dockerfile  # Dockerfile for building the API image
+├── entrypoint.sh
+└── ...
+```
+
+---
+---
+
+## Test Cases Overview
+
+### Positive Test Cases
+1. **Create Item**: Verify that valid items can be created successfully.
+2. **Get Item**: Retrieve existing items using their unique IDs.
+3. **Update Item**: Update properties of existing items.
+4. **Delete Item**: Remove items by their IDs.
+
+### Negative Test Cases
+1. **Get Nonexistent Item**: Ensure a `404` error is returned for invalid IDs.
+2. **Update Nonexistent Item**: Validate proper error handling when updating nonexistent items.
+3. **Delete Nonexistent Item**: Confirm that deleting nonexistent items returns a `404` error.
+4. **Create Item with Invalid Data**: Test that invalid input data returns appropriate `400` errors.
+5. **Update Item with Invalid Data**: Verify error handling when updating items with invalid input.
+
+---
+
+## Running the API server and tests locally
 ### Prerequisites
 1. Install Python and Pip:
    - Download and install Python from [python.org](https://www.python.org/).
@@ -33,31 +99,29 @@
 
 ### Usage
 **To run API server open a shell**
-Build the Docker image
+1. Build the Docker image
   ```bash
   $ docker build -t inventory-api .
   ```
-Run the Docker container with API app
+2. Run the Docker container with API app
   ```bash
   $ docker run -p 5000:5000 inventory-api
   ```
 
 **To run tests open another shell**
-Switch to `test-container` folder
+3. Switch to `test-container` folder
   ```bash
   $ cd test-container
   ```
-Build the Docker image for tests
+4. Build the Docker image for test runner
   ```bash
   $ docker-compose build
   ```
-Run  the Docker container with tests
+5. Start the container with an interactive shell:
   ```bash
   $ docker-compose run test sh
   ```
-That will drop you into a shell where you can run the tests with standard CLI
-
-**This will open the docker shell and you can run one of the following commands:**
+**That will drop you into a shell where you can run the tests with standard CLI:**
 *Run the entire test suite*
     
   ``` bash
@@ -76,7 +140,7 @@ That will drop you into a shell where you can run the tests with standard CLI
   $ pytest -s
   ``` 
 
-**To exit the shell**
+*To exit the shell*
   ```bash
   $ exit
   ```

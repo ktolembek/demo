@@ -29,7 +29,7 @@ git clone https://github.com/ktolembek/emirates.git
 ```bash
 pip install -r requirements.txt
 ```
-5. **Node.js v14+** (optional, for Supertest JS testing)
+5. **Node.js v14+** (optional, for Supertest.JS and Playwright testing)
 ---
 
 ## Folder Structure
@@ -90,13 +90,23 @@ Access the server at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 pytest
 ```
 
-#### Using Supertest.js
+#### Using other frameworks
+
+**Supertest.js**
 ```bash
 cd supertest
 npm install
-npm test
+npm test # Run tests
 ```
 
+**Playwright**
+```bash
+cd playwright
+npm install
+npx playwright install
+npx playwright test # Run tests
+npx playwright show-report  # View reports
+```
 ---
 
 ## Running in Docker

@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "Ken",
-  "license": "ISC",
+  "author": "Ken Tolembek",
+  "license": "MIT",
   "description": "API testing with Supertest"
 }

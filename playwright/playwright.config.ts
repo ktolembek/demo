@@ -9,7 +9,7 @@ export default defineConfig({
   retries: 1, // Number of retries for flaky tests
   reporter: [['html', { open: 'on-failure' }]], // Generates an HTML report
   use: {
-    baseURL: 'http://127.0.0.1:5000', // Base URL for API calls
+    baseURL: 'http://localhost:5173', // Base URL for API calls
     trace: 'on-first-retry', // Enables trace collection for failed tests
     screenshot: 'only-on-failure', // Captures screenshots on test failures
     video: 'retain-on-failure', // Retains videos on failures

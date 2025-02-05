@@ -1,15 +1,16 @@
-# Inventory Management API
-
-This repository contains the **Inventory Management API** built using Python and Flask, along with an extensive test suite to validate its functionality and robustness. Tests are implemented in both Python (using Pytest) and JavaScript (using Supertest.js or Playwright) for flexible and versatile validation.
+# Modern Testing Workshop
+This repository contains end-to-end tests for the **Target React App** (React+Vite) and integration tests for the **Inventory Management API** (Python+Flask). Tests are implemented in both Python (using Pytest) and JavaScript (using Cypress, Playwright, Supertest.js) for exhaustive comparison.
 
 ---
 
 ## Features
 
-- **CRUD Operations**: Full support for Create, Read, Update, and Delete functionalities.
-- **Positive and Negative Test Cases**: Validates both success and error-handling scenarios.
+- **E2E tests**: tests validate different interactive elements across multiple example pages
+- **Positive and Negative API Test Cases**: Validates both success and error-handling scenarios.
 - **Parameterized Tests**: Ensures extensive coverage with varied data inputs.
 - **Setup and Teardown**: Automated preparation and cleanup for consistent test environments.
+- **Target React App**: a React application designed for modern testing workshops.
+- **API Server with CRUD Operations**: Full support for Create, Read, Update, and Delete functionalities.
 - **Docker Integration**: Easy-to-use containerized environments for testing.
 
 ---
@@ -18,29 +19,46 @@ This repository contains the **Inventory Management API** built using Python and
 
 To run the tests, ensure the following are installed:
 
-1. **Python 3.9+**
-2. **Docker** and **Docker Compose** (optional, for containerized testing)
-3. Clone this repository:
+1. **Python 3.9+** (Flask API app, Pytest)
+2. **Node.js v14+** (React app, Cypress, Playwright, Supertest testing)
+3. **Docker** and **Docker Compose** (optional, for containerized testing)
+4. Clone this repository:
 ```bash
-git clone https://github.com/ktolembek/emirates.git
+git clone https://github.com/ktolembek/demo.git
 ```
-4. Required Python packages (install via `requirements.txt`):
 
-```bash
-pip install -r requirements.txt
-```
-5. **Node.js v14+** (optional, for Supertest.JS and Playwright testing)
 ---
 
 ## Folder Structure
 
 ```plaintext
-emirates/
+demo/
 ├── app/
 │   ├── app.py              # API application
 │   ├── requirements.txt    # Python dependencies
 │   ├── tests/              # Pytest test cases
 │   ├── docs/               # Swagger/OpenAPI documentation
+│   └── ...
+├── cypress/                # Cypress test cases
+│   └── cypress/
+│       ├── e2e/            # api.cy.js, example1.cy.js, example2.cy.js, ...
+│       ├── fixtures/
+│       ├── support/
+│       ├── cypress.config.js
+│       ├── package.json
+│       └── ...
+├── playwright/             # Playwright test cases
+│   ├── tests/              # api.spec.ts, example1.spec.js, etc.
+│   ├── package.json
+│   └── ...
+├── supertest/              # Supertest.js API test cases
+│   ├── api.test.js
+│   ├── package.json
+│   └── ...
+├── target-app/              # Target React app for e2e tests
+│   ├── public/
+│   ├── src/
+│   ├── package.json
 │   └── ...
 ├── test-container/
 │   ├── Dockerfile          # Docker image for test runner
@@ -48,14 +66,6 @@ emirates/
 │   ├── tests/              # Containerized Pytest cases
 ├── Dockerfile              # Docker image for the API server
 ├── entrypoint.sh           # Entrypoint for the API container
-├── playwright/             # Playwright test cases
-│   ├── api.spec.ts
-│   ├── package.json
-│   └── ...
-├── supertest/              # Supertest.js test cases
-│   ├── api.test.js
-│   ├── package.json
-│   └── ...
 └── ...
 ```
 
@@ -72,14 +82,35 @@ This video covers:
 ---
 ---
 
-## Running Locally
+## Running API app
+
+### API Endpoints
+
+| Method | Endpoint         | Description            |
+|--------|------------------|------------------------|
+| POST   | `/items`         | Create a new item      |
+| GET    | `/items/:id`     | Retrieve an item       |
+| GET    | `/items`         |  List all items        |
+| PUT    | `/items/:id`     | Update an existing item|
+| DELETE | `/items/:id`     | Delete an item         |
+
 ### Prerequisites
 1. Install Python and Pip:
    - Download and install Python from [python.org](https://www.python.org/).
    - Ensure Python is installed by running: `python --version` (or `python3 --version`)
    - Ensure Pip is installed by running `pip --version` (or `pip3 --version`) in the command line.
-2. Install required packages:
-   - Run `pip install -r requirements.txt` to install all necessary packages.
+2. Create a virtual environment in your project directory:
+```bash
+python3 -m venv venv
+```
+3. Activate the virtual environment:
+```bash
+source venv/bin/activate
+```
+4. Install required Python packages (install via `requirements.txt`):
+```bash
+pip install -r requirements.txt
+```
 
 ### Start the API Server
 ```bash
@@ -89,12 +120,55 @@ python app.py
 
 Access the server at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
-### Run Tests Locally
+## Running React Target app
+### Prerequisites
+1. Install Node.js and npm
+2. Install required React and Vite packages
+```bash
+cd target-app
+npm install
+```
 
-#### Using Pytest
+### Start React app
+```bash
+npm run dev
+```
+
+Access the target app at [http://localhost:5173/](http://localhost:5173/).
+
+### Run Tests
+
+#### Pytest
 ```bash
 pytest  # Run from `app` folder
 pytest --html=report.html # Generate HTML report (run inside `app`)
+```
+
+
+### Cypress
+
+```bash
+cd cypress/cypress
+npm install
+npx cypress open
+```
+
+### Playwright
+
+```bash
+cd playwright
+npm install
+npx playwright install
+npx playwright test # Run tests
+npx playwright show-report  # View reports
+```
+
+### Supertest
+
+```bash
+cd supertest
+npm install
+npm test # Run tests
 ```
 
 ### [Optional] Pytest with Allure Reports
@@ -119,28 +193,9 @@ pytest --alluredir=allure-results
 ```bash
 allure serve allure-results
 ```
-
-
-### [Optional] Using other frameworks
-
-**Supertest.js**
-```bash
-cd supertest
-npm install
-npm test # Run tests
-```
-
-**Playwright**
-```bash
-cd playwright
-npm install
-npx playwright install
-npx playwright test # Run tests
-npx playwright show-report  # View reports
-```
 ---
 
-## Running in Docker
+## Running in Docker container
 
 ### Build and Run API Server
 ```bash
@@ -174,20 +229,32 @@ exit
 
 ---
 
+## E2E Test Cases
+### 🏠 **Homepage Tests (`homepage.cy.js`)**:
+- Navigates between example pages to verify correct routing.
 
-## API Endpoints
+### 🔤 **Example 1 - Heading Tests (`example1.cy.js`)**:
+- Verifies that the main heading exists and has the correct text.
 
-| Method | Endpoint         | Description            |
-|--------|------------------|------------------------|
-| POST   | `/items`         | Create a new item      |
-| GET    | `/items/:id`     | Retrieve an item       |
-| GET    | `/items`         |  List all items        |
-| PUT    | `/items/:id`     | Update an existing item|
-| DELETE | `/items/:id`     | Delete an item         |
+### ✍ **Example 2 - Character Counter (`example2.cy.js`)**:
+- Ensures character count updates as users type.
+- Limits input to 15 characters.
+
+### 📝 **Example 3 - Multiple Inputs (`example3.cy.js`)**:
+- Tests independent text inputs.
+- Checks personalized greeting messages.
+
+### 🎯 **Example 4 - Click, Select, Check (`example4.cy.js`)**:
+- Validates click and double-click behavior.
+- Ensures checkboxes update correctly.
+- Dropdown selections persist.
+- Mouseover highlights correct elements.
 
 ---
 
-## Test Cases
+---
+
+## API Test Cases
 
 ### Positive Tests
 1. **Create Item**: Successfully create items.
